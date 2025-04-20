@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    android:id="@+id/rootScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#000000"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<!-- Màn hình chính ứng dụng - Layout tổng sử dụng ConstraintLayout -->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -6,8 +16,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000">
-
-    <!-- Banner -->
+    <!-- Phần ảnh banner ở đầu trang -->
     <ImageView
         android:id="@+id/heroImage"
         android:layout_width="0dp"
@@ -18,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Tiêu đề phim -->
+    <!-- Tiêu đề phim chính -->
     <TextView
         android:id="@+id/movieTitle"
         android:layout_width="wrap_content"
@@ -27,12 +36,12 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/heroImage"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/heroImage"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-    <!-- RecyclerView danh sách phim -->
+    <!-- Danh sách phim cuộn ngang (RecyclerView) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCategory"
         android:layout_width="0dp"
@@ -44,7 +53,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- LinearLayout Horizontal: nút lọc -->
+    <!-- Nhóm nút lọc thể loại phim nằm ngang -->
     <LinearLayout
         android:id="@+id/filterButtons"
         android:layout_width="0dp"
@@ -57,12 +66,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Nút lọc "Tất cả" -->
         <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tất cả"/>
+
+        <!-- Nút lọc "Hành động" -->
         <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hành động" android:layout_marginStart="12dp"/>
+
+        <!-- Nút lọc "Tình cảm" -->
         <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tình cảm" android:layout_marginStart="12dp"/>
     </LinearLayout>
 
-    <!-- LinearLayout Vertical: danh sách chữ -->
+    <!-- Danh sách các thể loại dạng chữ -->
     <LinearLayout
         android:id="@+id/categoryList"
         android:layout_width="0dp"
@@ -73,11 +87,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Dòng thể loại 1 -->
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="• Hành động" android:textColor="#FFFFFF" android:textSize="16sp"/>
+
+        <!-- Dòng thể loại 2 -->
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="• Tình cảm" android:textColor="#FFFFFF" android:textSize="16sp" android:layout_marginTop="4dp"/>
     </LinearLayout>
 
-    <!-- RelativeLayout: menu user -->
+    <!-- Phần menu người dùng nằm góc phải trên cùng -->
     <RelativeLayout
         android:id="@+id/userMenuLayout"
         android:layout_width="wrap_content"
@@ -86,6 +103,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Ảnh đại diện người dùng (nút bấm) -->
         <ImageView
             android:id="@+id/userAvatarBtn"
             android:layout_width="40dp"
@@ -101,6 +119,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_profile" />
 
+        <!-- Menu thả xuống (ẩn mặc định) chứa tên và nút đăng xuất -->
         <LinearLayout
             android:id="@+id/userDropdownMenu"
             android:layout_width="wrap_content"
@@ -114,6 +133,7 @@
             android:padding="12dp"
             android:visibility="gone">
 
+            <!-- Lời chào người dùng -->
             <TextView
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
@@ -122,6 +142,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
 
+            <!-- Nút đăng xuất -->
             <Button
                 android:id="@+id/btnLogout"
                 android:layout_width="wrap_content"
@@ -132,7 +153,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!-- FrameLayout: mini player -->
+    <!-- Mini player hiển thị ở cuối màn hình -->
     <FrameLayout
         android:id="@+id/miniPlayer"
         android:layout_width="0dp"
@@ -144,6 +165,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Ảnh đại diện phim đang phát -->
         <ImageView
             android:id="@+id/miniThumb"
             android:layout_width="120dp"
@@ -151,6 +173,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/sample_poster"/>
 
+        <!-- Tên phim đang phát -->
         <TextView
             android:id="@+id/miniTitle"
             android:layout_width="wrap_content"
@@ -161,6 +184,7 @@
             android:layout_marginStart="130dp"
             android:layout_marginTop="16dp" />
 
+        <!-- Nút tắt mini player -->
         <ImageView
             android:id="@+id/miniClose"
             android:layout_width="24dp"
@@ -171,7 +195,7 @@
             android:tint="#FFFFFF"/>
     </FrameLayout>
 
-    <!-- TABLELAYOUT: Lịch phát hoặc bảng phim -->
+    <!-- Bảng phim sắp chiếu theo thứ -->
     <TableLayout
         android:id="@+id/scheduleTable"
         android:layout_width="0dp"
@@ -184,40 +208,118 @@
 
         <!-- Hàng tiêu đề -->
         <TableRow>
-            <TextView
-                android:text="Thứ"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:padding="8dp"/>
-            <TextView
-                android:text="Phim sắp ra mắt"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:padding="8dp"/>
+            <TextView android:text="Thứ" android:textColor="#FFFFFF" android:textStyle="bold" android:padding="8dp"/>
+            <TextView android:text="Phim sắp ra mắt" android:textColor="#FFFFFF" android:textStyle="bold" android:padding="8dp"/>
         </TableRow>
 
-        <!-- Dữ liệu -->
+        <!-- Nội dung từng ngày -->
         <TableRow>
-            <TextView
-                android:text="Thứ 2"
-                android:textColor="#CCCCCC"
-                android:padding="8dp"/>
-            <TextView
-                android:text="Hiday: Ký ức rừng sâu"
-                android:textColor="#FFFFFF"
-                android:padding="8dp"/>
+            <TextView android:text="Thứ 2" android:textColor="#CCCCCC" android:padding="8dp"/>
+            <TextView android:text="Hiday: Ký ức rừng sâu" android:textColor="#FFFFFF" android:padding="8dp"/>
         </TableRow>
 
         <TableRow>
-            <TextView
-                android:text="Thứ 3"
-                android:textColor="#CCCCCC"
-                android:padding="8dp"/>
-            <TextView
-                android:text="Truy sát không lối thoát"
-                android:textColor="#FFFFFF"
-                android:padding="8dp"/>
+            <TextView android:text="Thứ 3" android:textColor="#CCCCCC" android:padding="8dp"/>
+            <TextView android:text="Truy sát không lối thoát" android:textColor="#FFFFFF" android:padding="8dp"/>
         </TableRow>
-
     </TableLayout>
+
+    <!-- Phần bổ sung: DEMO Common Controls -->
+    <!-- TextView - hiển thị thông báo -->
+    <TextView
+        android:id="@+id/commonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn muốn để lại nhận xét?"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/scheduleTable"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp" />
+
+    <!-- EditText - nhập nhận xét -->
+    <EditText
+        android:id="@+id/commonEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tại đây"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:background="#FFFFFF"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/commonText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
+
+    <!-- WebView - hiển thị nội dung phim hoặc trang trailer -->
+    <WebView
+        android:id="@+id/commonWeb"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        app:layout_constraintTop_toBottomOf="@id/commonEdit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp" />
+
+    <!-- RadioButton - đánh giá nhanh -->
+    <RadioGroup
+        android:id="@+id/commonRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/commonWeb"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp">
+        <RadioButton
+            android:id="@+id/rbGood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hay"
+            android:textColor="#FFFFFF" />
+        <RadioButton
+            android:id="@+id/rbOkay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bình thường"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="16dp" />
+        <RadioButton
+            android:id="@+id/rbBad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Không hay"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="16dp" />
+    </RadioGroup>
+
+    <!-- CheckBox - thêm vào yêu thích -->
+    <CheckBox
+        android:id="@+id/commonCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lưu vào yêu thích"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/commonRadioGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp" />
+
+    <!-- Button - gửi nhận xét -->
+    <Button
+        android:id="@+id/commonBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gửi đánh giá"
+        android:textSize="14sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/commonCheck"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
